@@ -2,9 +2,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "Readout",
+    name: "TextViewer",
     platforms: [.macOS(.v14)],
     targets: [
-        .executableTarget(name: "Readout", path: "Sources/Readout")
+        .executableTarget(name: "TextViewer", path: "Sources/TextViewer")
     ]
 )

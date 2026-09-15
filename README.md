@@ -1,4 +1,4 @@
-# Readout
+# TextViewer
 
 A small native macOS viewer and editor for text files. JSON gets a
 syntax-highlighted source pane and a collapsible tree; other text is detected
@@ -20,7 +20,7 @@ in, byte-identical when unedited.
 ## Build
 
 ```sh
-./build.sh            # builds build/Readout.app
+./build.sh            # builds build/TextViewer.app
 ./build.sh --install  # builds, then installs to /Applications and re-registers it
 ```
 
@@ -30,17 +30,17 @@ Requires the Swift toolchain that ships with Xcode. No dependencies.
 
 | File | What's in it |
 | --- | --- |
-| `Sources/Readout/JSONParser.swift` | Hand-written parser. Keeps member order (JSONSerialization doesn't), keeps numbers as written, records a token per literal for highlighting, and reports line/column on failure. |
-| `Sources/Readout/Theme.swift` | Every color, as dynamic light/dark pairs. Change a hex here and both panes follow. |
-| `Sources/Readout/Highlighter.swift` | Tokens → `NSAttributedString` for the source pane. |
-| `Sources/Readout/EditorView.swift` | `NSTextView` + line-number ruler, wrapped for SwiftUI. |
-| `Sources/Readout/TreeView.swift` | Flattens the value into visible rows, renders them, handles expansion and the copy menu. |
-| `Sources/Readout/ContentView.swift` | Split view, toolbar, status bar. |
-| `Sources/Readout/App.swift` | Read-only `DocumentGroup`. |
-| `Sources/Readout/TextAnalysis.swift` | Encoding sniffing, kind detection, delimited-table parsing. |
-| `Sources/Readout/LineTokenizer.swift` | Log and config tokenizers feeding the same highlighting pipeline as JSON. |
-| `Sources/Readout/TextViews.swift` | Table and prose presentations. |
-| `Sources/Readout/DocumentView.swift` | Picks the presentation, owns edit mode and the status bar. |
+| `Sources/TextViewer/JSONParser.swift` | Hand-written parser. Keeps member order (JSONSerialization doesn't), keeps numbers as written, records a token per literal for highlighting, and reports line/column on failure. |
+| `Sources/TextViewer/Theme.swift` | Every color, as dynamic light/dark pairs. Change a hex here and both panes follow. |
+| `Sources/TextViewer/Highlighter.swift` | Tokens → `NSAttributedString` for the source pane. |
+| `Sources/TextViewer/EditorView.swift` | `NSTextView` + line-number ruler, wrapped for SwiftUI. |
+| `Sources/TextViewer/TreeView.swift` | Flattens the value into visible rows, renders them, handles expansion and the copy menu. |
+| `Sources/TextViewer/ContentView.swift` | Split view, toolbar, status bar. |
+| `Sources/TextViewer/App.swift` | Read-only `DocumentGroup`. |
+| `Sources/TextViewer/TextAnalysis.swift` | Encoding sniffing, kind detection, delimited-table parsing. |
+| `Sources/TextViewer/LineTokenizer.swift` | Log and config tokenizers feeding the same highlighting pipeline as JSON. |
+| `Sources/TextViewer/TextViews.swift` | Table and prose presentations. |
+| `Sources/TextViewer/DocumentView.swift` | Picks the presentation, owns edit mode and the status bar. |
 | `Sources/QuickLook/` | The Quick Look extension: same parser and rows, its own bundle and entry point. |
 
 ## Notes
@@ -63,13 +63,13 @@ Requires the Swift toolchain that ships with Xcode. No dependencies.
 Spacebar in Finder renders the tree instead of raw text. macOS requires the
 extension to be switched on by hand, once:
 
-System Settings → General → Login Items & Extensions → Quick Look → tick **Readout**.
+System Settings → General → Login Items & Extensions → Quick Look → tick **TextViewer**.
 
-Check registration with `pluginkit -mAvvv -p com.apple.quicklook.preview | grep -A3 Readout`.
+Check registration with `pluginkit -mAvvv -p com.apple.quicklook.preview | grep -A3 TextViewer`.
 
 ## Default handler
 
 ```sh
-duti -s local.andrewneuwirth.Readout public.json all   # make it the .json app
+duti -s app.textviewer.TextViewer public.json all   # make it the .json app
 duti -x json                                            # check what's bound now
 ```

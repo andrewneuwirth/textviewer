@@ -1,10 +1,10 @@
 #!/bin/zsh
-# Builds Readout.app (with its Quick Look extension) and installs it.
+# Builds TextViewer.app (with its Quick Look extension) and installs it.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-APP_NAME="Readout"
-EXT_NAME="ReadoutQuickLook"
+APP_NAME="TextViewer"
+EXT_NAME="TextViewerQuickLook"
 BUILD_DIR="build"
 APP="$BUILD_DIR/$APP_NAME.app"
 APPEX="$APP/Contents/PlugIns/$EXT_NAME.appex"
@@ -22,9 +22,9 @@ printf 'APPL????' > "$APP/Contents/PkgInfo"
 # separate binary with its own entry point, so swiftc builds it directly.
 mkdir -p "$APPEX/Contents/MacOS"
 swiftc -O -module-name "$EXT_NAME" \
-    Sources/Readout/JSONParser.swift \
-    Sources/Readout/Theme.swift \
-    Sources/Readout/TreeView.swift \
+    Sources/TextViewer/JSONParser.swift \
+    Sources/TextViewer/Theme.swift \
+    Sources/TextViewer/TreeView.swift \
     Sources/QuickLook/PreviewViewController.swift \
     Sources/QuickLook/main.swift \
     -framework QuickLookUI \

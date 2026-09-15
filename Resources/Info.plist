@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>Readout</string>
+    <string>TextViewer</string>
     <key>CFBundleDisplayName</key>
-    <string>Readout</string>
+    <string>TextViewer</string>
     <key>CFBundleExecutable</key>
-    <string>Readout</string>
+    <string>TextViewer</string>
     <key>CFBundleIdentifier</key>
-    <string>local.andrewneuwirth.Readout</string>
+    <string>app.textviewer.TextViewer</string>
     <key>CFBundleIconFile</key>
-    <string>Readout</string>
+    <string>TextViewer</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>

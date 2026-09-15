@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>Readout Quick Look</string>
+    <string>TextViewer Quick Look</string>
     <key>CFBundleExecutable</key>
-    <string>ReadoutQuickLook</string>
+    <string>TextViewerQuickLook</string>
     <key>CFBundleIdentifier</key>
-    <string>local.andrewneuwirth.Readout.QuickLook</string>
+    <string>app.textviewer.TextViewer.QuickLook</string>
     <key>CFBundlePackageType</key>
     <string>XPC!</string>
     <key>CFBundleShortVersionString</key>

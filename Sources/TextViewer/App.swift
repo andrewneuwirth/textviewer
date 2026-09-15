@@ -38,10 +38,10 @@ struct TextFileDocument: FileDocument {
     }
 
     static let unsupportedMarkdown = NSError(
-        domain: "local.andrewneuwirth.Readout",
+        domain: "app.textviewer.TextViewer",
         code: 1,
         userInfo: [
-            NSLocalizedDescriptionKey: "Readout doesn’t open Markdown files.",
+            NSLocalizedDescriptionKey: "TextViewer doesn’t open Markdown files.",
             NSLocalizedRecoverySuggestionErrorKey: "Open it with MDHero instead."
         ])
 
@@ -53,7 +53,7 @@ struct TextFileDocument: FileDocument {
 }
 
 @main
-struct ReadoutApp: App {
+struct TextViewerApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: TextFileDocument()) { file in
             DocumentView(text: file.$document.text, encoding: file.document.encoding)

@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -54,11 +55,34 @@ struct TextFileDocument: FileDocument {
 
 @main
 struct TextViewerApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
     var body: some Scene {
         DocumentGroup(newDocument: TextFileDocument()) { file in
             DocumentView(text: file.$document.text, encoding: file.document.encoding)
         }
         .defaultSize(width: 1120, height: 740)
+        .commands {
+            CommandGroup(after: .appInfo) {
+                Button("Make TextViewer the Default Viewer…") {
+                    Task { await DefaultHandler.claimDefaults() }
+                }
+            }
+        }
 
+    }
+}
+
+
+/// Launching with `--make-default` asks for the file-type defaults once the
+/// app is a real foreground process; the system's confirmation panel cannot be
+/// shown to a command-line invocation.
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        guard CommandLine.arguments.contains("--make-default") else { return }
+        Task {
+            for line in await DefaultHandler.claimDefaults() { print(line) }
+            for line in DefaultHandler.currentHandlers() { print("now \(line)") }
+        }
     }
 }

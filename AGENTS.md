@@ -6,7 +6,7 @@ A native macOS viewer/editor for text files. JSON gets a syntax-highlighted sour
 
 - Swift 5.9 tools, SwiftPM, macOS 14+, SwiftUI + AppKit. No dependencies. Bundle id `app.textviewer.TextViewer`.
 - App target `TextViewer` (`Sources/TextViewer/`) built by SwiftPM. The Quick Look extension `TextViewerQuickLook` (`Sources/QuickLook/`) is **not** a SwiftPM target: `build.sh` compiles it with `swiftc` from `JSONParser.swift`, `Theme.swift`, `TreeView.swift` plus `Sources/QuickLook/*.swift`. If those shared files gain a dependency on another app file, add it to the `swiftc` line too.
-- Resources: `Resources/Info.plist`, `Resources/TextViewer.icns`, `Resources/QuickLook/{Info.plist,QuickLook.entitlements}` (the sandbox entitlement PlugInKit requires).
+- Resources: `Resources/Info.plist`, `Resources/TextViewer.icns` (the Mac Tools family plate, drawn by `swift ../Kit/tools/icon.swift 79b8ff curlybraces Resources/TextViewer.icns`; Kit is a private sibling repo, and the app doesn't depend on it), `Resources/QuickLook/{Info.plist,QuickLook.entitlements}` (the sandbox entitlement PlugInKit requires).
 
 ## Commands
 
